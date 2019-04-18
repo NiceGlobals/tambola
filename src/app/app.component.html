@@ -1,0 +1,63 @@
+<!-- Top container -->
+<div class="w3-bar w3-top w3-white w3-card-2 w3-large" style="z-index:93">
+  <button class="no-print w3-bar-item w3-button w3-hide-large w3-hover-none toggle-menu w3-right" (click)="w3_toggle()">
+    <i class="material-icons" *ngIf="!sideBarClass">menu</i><i class="material-icons"  *ngIf="sideBarClass">close</i>
+  </button>
+  <span class="w3-bar-item">
+    <a class="w3-animate-zoom" routerLink="/">
+      <img class="logo-img w3-animate-zoom" src="http://mastitimeradio.com/images/mastitime-300.png">
+    </a>
+  </span>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left sidebar-class no-print" [ngClass]="sideBarClass ? 'side-toggle' : ''" id="mySidebar">
+  <!-- <app-sidebar></app-sidebar> -->
+  <div class="container-fluid">
+    <div class="row align-items-center justify-content-start mt-3">
+      <div class="col pr-0 user-icon-div">
+        <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
+      </div>
+      <div class="col px-0">
+        <p class="my-0 lh1" *ngIf="!(user|async)?.uid">
+          Welcome <b>Guest</b><br> <small>Please login</small>
+        </p>
+        <p class="my-0" *ngIf="(user|async)?.uid && endUser">
+          <span class="text-bold lh1 d-block">Hi <span class="fw-600">{{ endUser.fname }}</span></span>
+          <span *ngIf="endUser.email"><small class="text-muted lh1">{{endUser.email.length > 23 ? (endUser.email | slice:0:20) + '...': endUser.email}}</small></span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- <hr> -->
+  <div class="w3-bar-block nav-link-group mt-5">
+    <a routerLink="/admin" *ngIf="(user|async)?.uid && (endUser && endUser.utype == 'myadmin')" routerLinkActive="active w3-red" (click)="w3_close()"
+     class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog"></i>Admin</a>
+    <!-- <a routerLink="/" routerLinkActive="active w3-red" (click)="w3_close()" [routerLinkActiveOptions]="{exact: true}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-home"></i>Home</a> -->
+    <a routerLink="/games" routerLinkActive="active w3-red" (click)="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-gamepad"></i>Games</a>
+    <a routerLink="/tickets" *ngIf="(user|async)?.uid && endUser" routerLinkActive="active w3-red" (click)="w3_close()" [routerLinkActiveOptions]="{exact: false}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket"></i>Tickets <span *ngIf="endUser.tickets && endUser.tickets.length > 0">({{endUser.tickets.length}})</span></a>
+    <!-- <a routerLink="/contact_us" routerLinkActive="active w3-red" (click)="w3_close()" [routerLinkActiveOptions]="{exact: false}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-rocket"></i>Contact Us</a> -->
+    <a (click)="w3_close()" target="_blank" href="https://www.mastitimeradio.com/index.php/contact-us" class="w3-bar-item w3-button w3-padding"><i class="fa fa-rocket"></i>Contact Us <i class="fa fa-external-link ml-1" style="font-size: 0.75rem"></i></a>
+    <a routerLink="/login" *ngIf="!(user|async)?.uid" routerLinkActive="active w3-red" (click)="w3_close()" [routerLinkActiveOptions]="{exact: false}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-lock"></i>Login with Email</a>
+    <a *ngIf="(user|async)?.uid" (click)="logout()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-power-off"></i>Logout</a>
+    <!-- <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" *ngIf="(user|async)?.uid && (endUser && endUser.utype == 'myadmin')" ><b>Visits:</b> {{visitorsCount || ''}}</a> -->
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" *ngIf="(user|async)?.uid && (endUser && endUser.utype == 'myadmin')" ><b>Visits: </b><span [innerHTML]="visitorsCount"></span></a>
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding"><small>Version v52, Updated on 12-Apr-2019.</small></a>
+    <br>
+    <br>
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity"  [ngClass]="sideBarClass ? 'side-toggle' : ''"  (click)="w3_toggle()" style="cursor:pointer" title="close side menu"
+  id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main main-container">
+  <router-outlet></router-outlet>
+</div>
+<!-- <div class="w3-main" align="center">
+  <img src="/assets/images/orientation.jpg" class="my-auto mx-auto" style="max-height: Calc(100vh - 90px);display: inline-block; width: auto; max-width: 100%; height: auto" alt="orientation-warning">
+</div> -->
+<app-emv-req-screen *ngIf="emailVerified === false"></app-emv-req-screen>

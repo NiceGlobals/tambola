@@ -1,0 +1,213 @@
+<section class="main-section h-container2 bg-overlay p-3" *ngIf="vState == 0">
+  <div class="d-v-50 text-center">
+    <app-processing></app-processing>
+    <h6 class="text-center text-warning">{{stateMessage}}, please wait...</h6>
+  </div>
+</section>
+<section class="main-section h-container2 p-3" id="game_playing_mode" *ngIf="vState == 1">
+  <p class="text-center mt-5 text-danger">{{errMessage}}</p>
+  <p class="text-center">
+    <a routerLink="/games" class="btn px-3 px-md-4 px-lg-5 py-2 btn-danger"><i class="material-icons mr-3">subdirectory_arrow_left</i>Go Back</a>
+  </p>
+</section>
+<section class="main-section h-container2 p-3" id="game_playing_mode" *ngIf="vState > 1">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="fw-200 my-3">
+        Game Status: <b>
+        <span *ngIf="selectedGame.gst > 1">COMPLETED</span>
+        <span *ngIf="selectedGame.gst == 1">IN PROGRESS</span>
+      </b>
+      </h3>
+      <hr class="mt-0 mb-2">
+    </div>
+  </div>
+  <div class="row mt-3" *ngIf="selectedGame.sponcers">
+    <div class="col-12 text-center">
+      <div class="sponcer-block">
+        <p class="text-center my-0">
+          <a [href]="selectedGameSponcers[sponcerId].redirectLink" target="_blank" class="sponcer-link d-inline-block">
+            <img class="d-none d-xl-inline-block" id="banner-xl" width="auto" [src]="selectedGameSponcers[sponcerId].bannerXl" alt="sponcer_image">
+            <img class="d-none d-md-inline-block d-lg-none" id="banner-lg" width="auto" [src]="selectedGameSponcers[sponcerId].bannerLg" alt="sponcer_image">
+            <img class="d-inline-block d-md-none" id="banner-sm" width="auto" [src]="selectedGameSponcers[sponcerId].bannerSm" alt="sponcer_image">
+          </a>
+          <!-- <a href="https://www.mastitimeradio.com/index.php/component/banners/click/14" target="_blank" class="sponcer-link d-inline-block">
+            <img class="d-xl-inline-block d-none" id="banner-xl" height="150px" width="auto" src="/assets/images/sponcers/basera-xl.png" alt="sponcer_image">
+            <img class="d-md-inline-block d-xl-none d-none" id="banner-lg" height="150px" width="auto" src="/assets/images/sponcers/basera-lg.png" alt="sponcer_image">
+            <img class="d-inline-block d-md-none" height="150px" id="banner-sm" width="auto" src="/assets/images/sponcers/basera-sm.png" alt="sponcer_image">
+          </a> -->
+        </p>
+        <div class="sponcer-icon"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid px-0 mx-auto" style="max-width: 1366px;">
+    <div class="row mt-3 mt-md-4">
+      <div class="col-12 col-md-7 col-lg-8">
+        <h4>Completed numbers:</h4>
+        <hr class="mt-0 mb-2">
+        <table class="mop-game-table table table-bordered w3-card-4 table-cell-text-center">
+          <tr>
+            <td *ngFor="let cell of selectedGame.pnum | slice:0:10; let i = index" [id]="i"  [ngClass]="{'c-act':cell.picked, 'c-last': cell.serial === lastCount}">
+              {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td *ngFor="let cell of selectedGame.pnum | slice:10:20; let i = index" [id]="i + 10"  [ngClass]="{'c-act':cell.picked, 'c-last': cell.serial === lastCount}">
+              {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td *ngFor="let cell of selectedGame.pnum | slice:20:30; let i = index" [id]="i + 20"  [ngClass]="{'c-act':cell.picked, 'c-last': cell.serial === lastCount}">
+              {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td *ngFor="let cell of selectedGame.pnum | slice:30:40; let i = index" [id]="i + 30"  [ngClass]="{'c-act':cell.picked, 'c-last': cell.serial === lastCount}">
+              {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td *ngFor="let cell of selectedGame.pnum | slice:40:50; let i = index" [id]="i + 40"  [ngClass]="{'c-act':cell.picked, 'c-last': cell.serial === lastCount}">
+              {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td *ngFor="let cell of selectedGame.pnum | slice:50:60; let i = index" [id]="i + 50"  [ngClass]="{'c-act':cell.picked, 'c-last': cell.serial === lastCount}">
+              {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td *ngFor="let cell of selectedGame.pnum | slice:60:70; let i = index" [id]="i + 60"  [ngClass]="{'c-act':cell.picked, 'c-last': cell.serial === lastCount}">
+              {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td *ngFor="let cell of selectedGame.pnum | slice:70:80; let i = index" [id]="i + 70"  [ngClass]="{'c-act':cell.picked, 'c-last': cell.serial === lastCount}">
+              {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td *ngFor="let cell of selectedGame.pnum | slice:80:90; let i = index" [id]="i + 80"  [ngClass]="{'c-act':cell.picked, 'c-last': cell.serial === lastCount}">
+              {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-12 text-center d-block d-md-none" *ngIf="selectedGame.sponcers">
+        <div class="sponcer-block my-3">
+          <p class="text-center my-0">
+            <a [href]="selectedGameSponcers[sponcerId].redirectLink" target="_blank" class="sponcer-link d-inline-block">
+              <img class="d-xl-inline-block d-none" id="banner-xl" width="auto" [src]="selectedGameSponcers[sponcerId].bannerXl" alt="sponcer_image">
+              <img class="d-md-inline-block d-xl-none d-none" id="banner-lg" width="auto" [src]="selectedGameSponcers[sponcerId].bannerLg" alt="sponcer_image">
+              <img class="d-inline-block d-md-none" id="banner-sm" width="auto" [src]="selectedGameSponcers[sponcerId].bannerSm" alt="sponcer_image">
+            </a>
+          </p>
+          <div class="sponcer-icon"></div>
+        </div>
+      </div>
+      <div class="col-12 col-md-5 col-lg-4">
+        <h4>Prizes claimed:</h4>
+        <hr class="mt-0 mb-2">
+        <div class="d-block">
+          <div class="prize-card w3-card-2 mb-3" id="1h">
+            <div class="prize-card-header" [ngClass]="selectedGame.winners.fh1.ticket ? 'bg-danger' : ''">
+              <!-- 1<sup>st</sup> Full House: <span class="pull-right"><b>$ 100.00</b></span> -->
+              <span [innerHTML]="selectedGame.prizes[0].p1"></span> <span class="pull-right"><b>$ <span [innerHTML]="selectedGame.prizes[0].p2"></span></b></span>
+            </div>
+            <div class="prize-card-status">
+              <p class="my-0">
+                {{ selectedGame.winners.fh1.ticket ? selectedGame.winners.fh1.ticket.tid : 'Not Claimed'}}
+                {{ selectedGame.winners.fh1.ticket ? ' - ' + selectedGame.winners.fh1.ticket.userName : ''}}
+                <span class="pull-right" *ngIf="!selectedGame.winners.fh1.claimed"><i class="fa fa-exclamation-triangle text-warning"></i></span>
+                <span class="pull-right" *ngIf="selectedGame.winners.fh1.claimed"><i class="fa fa-check text-success"></i></span>
+              </p>
+            </div>
+          </div>
+          <!-- <div class="prize-card w3-card-2 mb-3" id="2H">
+            <div class="prize-card-header" [ngClass]="selectedGame.winners.fh2.ticket ? 'bg-danger' : ''">
+              <span [innerHTML]="selectedGame.prizes[1].p1"></span> <span class="pull-right"><b>$ <span [innerHTML]="selectedGame.prizes[1].p2"></span></b></span>
+            </div>
+            <div class="prize-card-status">
+              <p class="my-0">
+                {{ selectedGame.winners.fh2.ticket ? selectedGame.winners.fh2.ticket.tid : 'Not Claimed'}}
+                {{ selectedGame.winners.fh2.ticket ? ' - ' + selectedGame.winners.fh2.ticket.userName : ''}}
+                <span class="pull-right" *ngIf="!selectedGame.winners.fh2.claimed"><i class="fa fa-exclamation-triangle text-warning"></i></span>
+                <span class="pull-right" *ngIf="selectedGame.winners.fh2.claimed"><i class="fa fa-check text-success"></i></span>
+              </p>
+            </div>
+          </div> -->
+          <div class="prize-card w3-card-2 mb-3" id="jaldi-five">
+            <div class="prize-card-header" [ngClass]="selectedGame.winners.ff.ticket ? 'bg-danger' : ''">
+              <span [innerHTML]="selectedGame.prizes[1].p1"></span> <span class="pull-right"><b>$ <span [innerHTML]="selectedGame.prizes[1].p2"></span></b></span>
+            </div>
+            <div class="prize-card-status">
+              <p class="my-0">
+                {{ selectedGame.winners.ff.ticket ? selectedGame.winners.ff.ticket.tid : 'Not Claimed'}}
+                {{ selectedGame.winners.ff.ticket ? ' - ' + selectedGame.winners.ff.ticket.userName : ''}}
+                <span class="pull-right" *ngIf="!selectedGame.winners.ff.claimed"><i class="fa fa-exclamation-triangle text-warning"></i></span>
+                <span class="pull-right" *ngIf="selectedGame.winners.ff.claimed"><i class="fa fa-check text-success"></i></span>
+              </p>
+            </div>
+          </div>
+          <div class="prize-card w3-card-2 mb-3" id="first-row">
+            <div class="prize-card-header" [ngClass]="selectedGame.winners.fr.ticket ? 'bg-danger' : ''" >
+              <!-- First Row: <span class="pull-right"><b>$ 25.00</b></span> -->
+              <span [innerHTML]="selectedGame.prizes[2].p1"></span> <span class="pull-right"><b>$ <span [innerHTML]="selectedGame.prizes[2].p2"></span></b></span>
+            </div>
+            <div class="prize-card-status">
+              <p class="my-0">
+                {{ selectedGame.winners.fr.ticket ? selectedGame.winners.fr.ticket.tid : 'Not Claimed'}}
+                {{ selectedGame.winners.fr.ticket ? ' - ' + selectedGame.winners.fr.ticket.userName : ''}}
+                <span class="pull-right" *ngIf="!selectedGame.winners.fr.claimed"><i class="fa fa-exclamation-triangle text-warning"></i></span>
+                <span class="pull-right" *ngIf="selectedGame.winners.fr.claimed"><i class="fa fa-check text-success"></i></span>
+              </p>
+            </div>
+          </div>
+          <div class="prize-card w3-card-2 mb-3"  id="second-row">
+            <div class="prize-card-header" [ngClass]="selectedGame.winners.sr.ticket ? 'bg-danger' : ''" >
+              <!-- Second Row: <span class="pull-right"><b>$ 25.00</b></span> -->
+              <span [innerHTML]="selectedGame.prizes[3].p1"></span> <span class="pull-right"><b>$ <span [innerHTML]="selectedGame.prizes[3].p2"></span></b></span>
+            </div>
+            <div class="prize-card-status">
+              <p class="my-0">
+                {{ selectedGame.winners.sr.ticket ? selectedGame.winners.sr.ticket.tid : 'Not Claimed'}}
+                {{ selectedGame.winners.sr.ticket ? ' - ' + selectedGame.winners.sr.ticket.userName : ''}}
+                <span class="pull-right" *ngIf="!selectedGame.winners.sr.claimed"><i class="fa fa-exclamation-triangle text-warning"></i></span>
+                <span class="pull-right" *ngIf="selectedGame.winners.sr.claimed"><i class="fa fa-check text-success"></i></span>
+              </p>
+            </div>
+          </div>
+          <div class="prize-card w3-card-2 mb-3" id="third-row">
+            <div class="prize-card-header" [ngClass]="selectedGame.winners.tr.ticket ? 'bg-danger' : ''">
+              <span [innerHTML]="selectedGame.prizes[4].p1"></span> <span class="pull-right"><b>$ <span [innerHTML]="selectedGame.prizes[4].p2"></span></b></span>
+            </div>
+            <div class="prize-card-status">
+              <p class="my-0">
+                <span class="pull-right" *ngIf="!selectedGame.winners.tr.claimed"><i class="fa fa-exclamation-triangle text-warning"></i></span>
+                <span class="pull-right" *ngIf="selectedGame.winners.tr.claimed"><i class="fa fa-check text-success"></i></span>
+                {{ selectedGame.winners.tr.ticket ? selectedGame.winners.tr.ticket.tid : 'Not Claimed'}}
+                {{ selectedGame.winners.tr.ticket ? ' - ' + selectedGame.winners.tr.ticket.userName : ''}}
+              </p>
+            </div>
+          </div>
+          <!-- <div class="prize-card w3-card-2 mb-3" id="third-row" *ngIf="selectedGame.winners.of !== null && selectedGame.winners.of !== undefined">
+            <div class="prize-card-header" [ngClass]="selectedGame.winners.of.ticket ? 'bg-danger' : ''">
+              <span [innerHTML]="selectedGame.prizes[6].p1"></span> <span class="pull-right"><b>$ <span [innerHTML]="selectedGame.prizes[6].p2"></span></b></span>
+            </div>
+            <div class="prize-card-status">
+              <p class="my-0">
+                <span class="pull-right" *ngIf="!selectedGame.winners.of.claimed"><i class="fa fa-exclamation-triangle text-warning"></i></span>
+                <span class="pull-right" *ngIf="selectedGame.winners.of.claimed"><i class="fa fa-check text-success"></i></span>
+                {{ selectedGame.winners.of.ticket ? selectedGame.winners.of.ticket.tid : 'Not Claimed'}}
+                {{ selectedGame.winners.of.ticket ? ' - ' + selectedGame.winners.of.ticket.userName : ''}}
+              </p>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Third Row: <span class="pull-right"><b>$ 25.00</b></span> -->

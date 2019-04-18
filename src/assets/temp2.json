@@ -1,0 +1,567 @@
+{
+  "et": 1546180200000,
+  "gid": "-LSZDHk1CHNla9UjKSOK",
+  "gst": 0,
+  "gt": 1546182000000,
+  "pnum": [
+      {
+          "num": 1,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 2,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 3,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 4,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 5,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 6,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 7,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 8,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 9,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 10,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 11,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 12,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 13,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 14,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 15,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 16,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 17,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 18,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 19,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 20,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 21,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 22,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 23,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 24,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 25,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 26,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 27,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 28,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 29,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 30,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 31,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 32,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 33,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 34,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 35,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 36,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 37,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 38,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 39,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 40,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 41,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 42,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 43,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 44,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 45,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 46,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 47,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 48,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 49,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 50,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 51,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 52,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 53,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 54,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 55,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 56,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 57,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 58,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 59,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 60,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 61,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 62,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 63,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 64,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 65,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 66,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 67,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 68,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 69,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 70,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 71,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 72,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 73,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 74,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 75,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 76,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 77,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 78,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 79,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 80,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 81,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 82,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 83,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 84,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 85,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 86,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 87,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 88,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 89,
+          "picked": false,
+          "serial": 0
+      },
+      {
+          "num": 90,
+          "picked": false,
+          "serial": 0
+      }
+  ],
+  "prizes": [
+      {
+          "p1": "1<sup>st</sup> Full House:",
+          "p2": 250,
+          "p3": 1
+      },
+      {
+          "p1": "2<sup>nd</sup> Full House:",
+          "p2": 150,
+          "p3": 2
+      },
+      {
+          "p1": "Fast Five / Jaldi Five:",
+          "p2": 60,
+          "p3": 3
+      },
+      {
+          "p1": "First Row:",
+          "p2": 60,
+          "p3": 4
+      },
+      {
+          "p1": "Second Row:",
+          "p2": 60,
+          "p3": 5
+      },
+      {
+          "p1": "Third Row:",
+          "p2": 60,
+          "p3": 6
+      },
+      {
+          "p1": "Only Five:",
+          "p2": 60,
+          "p3": 7
+      }
+  ],
+  "showPublic": true,
+  "sponcers": [
+      {
+        "bannerLg": "null",
+        "bannerMd": "null",
+        "bannerSm": "null",
+        "logo": "null",
+        "redirectLink": "null"
+      }
+  ],
+  "st": 1543575600000,
+  "tc": "./assets/t_and_c/terms_Dec.html",
+  "winners": {
+      "ff": {
+          "claimed": false,
+          "claimtime": false,
+          "serial": false,
+          "ticket": false,
+          "winneremail": false,
+          "winnername": false
+      },
+      "fh1": {
+          "claimed": false,
+          "claimtime": false,
+          "photoUrl": false,
+          "serial": false,
+          "ticket": false,
+          "winneremail": false,
+          "winnername": false
+      },
+      "fh2": {
+          "claimed": false,
+          "claimtime": false,
+          "photoUrl": false,
+          "serial": false,
+          "ticket": false,
+          "winneremail": false,
+          "winnername": false
+      },
+      "fr": {
+          "claimed": false,
+          "claimtime": false,
+          "serial": false,
+          "ticket": false,
+          "winneremail": false,
+          "winnername": false
+      },
+      "sr": {
+          "claimed": false,
+          "claimtime": false,
+          "serial": false,
+          "ticket": false,
+          "winneremail": false,
+          "winnername": false
+      },
+      "tr": {
+          "claimed": false,
+          "claimtime": false,
+          "serial": false,
+          "ticket": false,
+          "winneremail": false,
+          "winnername": false
+      },
+      "of": {
+          "claimed": false,
+          "claimtime": false,
+          "serial": false,
+          "ticket": false,
+          "winneremail": false,
+          "winnername": false
+      }
+  }
+}

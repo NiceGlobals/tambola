@@ -1,0 +1,10 @@
+.warning-box {
+  display: block;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 960px;
+  width: 80%;
+  color: #333;
+}

@@ -1,0 +1,103 @@
+.table-cell-text-center td {
+  padding: 8px 0px 0px 8px;
+  vertical-align: top;
+  height: 50px;
+  /* width: 40px; */
+  text-align: left;
+  font-size: 1.125rem;
+  line-height: 1;
+  font-weight: 600;
+  width: 10%;
+  position: relative;
+  color: #777;
+}
+
+
+td.c-act {
+  background-color: #25be25 !important;
+  color: #fff !important;
+}
+
+td:not(.c-act) span.dip-num {
+  display: none;
+}
+
+span.dip-num {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #000;
+}
+
+.picker-button:disabled, .picker-button.disabled {
+    opacity: 1 !important;
+}
+
+.init-buttons {
+  position: relative;
+  /* height: 160px; */
+}
+
+.action-hover>.btn.action-button {
+  height: 150px;
+  width: 150px;
+  /* padding: 1rem 1rem; */
+  border-radius: 100%;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.action-button.click-number {
+  padding: 0px;
+  font-size: 6rem !important;
+  font-weight: 400;
+  /* text-shadow: 6px 8px 17px rgba(0, 0, 0, 0.8); */
+  /* text-shadow: 1px 1px 0 #767676,
+    1px 2px 1px rgba(0,0,0,0.4), 2px 4px 1px rgba(0,0,0,0.4), 
+    3px 6px 1px rgba(0,0,0,0.4), 4px 8px 1px rgba(0,0,0,0.4), 
+    5px 10px 1px rgba(0,0,0, 0.35), 6px 12px 1px rgba(0,0,0, 0.35), 
+    7px 14px 1px rgba(0,0,0, 0.35),  8px 16px 1px rgba(0,0,0, 0.35), 
+    9px 18px 1px rgba(0,0,0, 0.3),  10px 20px 1px rgba(0,0,0, 0.3), 
+    11px 22px 1px rgba(0,0,0, 0.3),  12px 24px 1px rgba(0,0,0, 0.3), 
+    13px 26px 1px rgba(0,0,0, 0.275),  14px 28px 1px rgba(0,0,0, 0.275),
+    15px 30px 1px rgba(0,0,0, 0.275), 16px 32px 1px rgba(0,0,0, 0.275), 
+    17px 34px 1px rgba(0,0,0, 0.25), 18px 36px 1px rgba(0,0,0, 0.25), 
+    19px 38px 1px rgba(0,0,0, 0.25), 20px 40px 1px rgba(0,0,0, 0.25), 
+    21px 42px 1px rgba(0,0,0, 0.225), 22px 44px 1px rgba(0,0,0, 0.225), 
+    23px 46px 1px rgba(0,0,0, 0.225), 24px 48px 1px rgba(0,0,0, 0.225), 
+    25px 50px 1px rgba(0,0,0, 0.125), 26px 52px 1px rgba(0,0,0, 0.125), 
+    27px 54px 1px rgba(0,0,0, 0.125), 28px 56px 1px rgba(0,0,0, 0.125); */
+}
+
+/* .action-hover {
+  width: 160px;
+  height: 160px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition-duration: 0.5s !important;
+}
+
+.action-hover:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -145px;
+  width: 45px;
+  height: 100%;
+  background: rgba(256, 256, 256, 0.3);
+  transform: skewX(-30deg);
+}
+
+.action-hover:hover:before {
+  left: 180px;
+} */
+
+/* .dial-button {
+    width: 120px;
+    height: 120px;
+} */

@@ -1,0 +1,32 @@
+{
+  "-LSZ8LwNGxnXd6HtwA-a": {
+    "bannerLg": "./assets/images/sponcers/star-lg.jpg",
+    "bannerMd": "./assets/images/sponcers/star-lg.jpg",
+    "bannerSm": "./assets/images/sponcers/star-sm.jpg",
+    "logo": "./assets/images/sponcers/kalakar.png",
+    "mailBanner": "#",
+    "redirectLink": "https://www.starkalakaar.com/",
+    "title": "Desi Plaza TV",
+    "type": "co"
+  },
+  "-LSZBg0AQWJGVdQjsgF3": {
+    "bannerLg": "#",
+    "bannerMd": "#",
+    "bannerSm": "#",
+    "logo": "https://www.mastitimeradio.com/tambola/assets/images/t_n_c_assets/desiplaza_us.png",
+    "mailBanner": "#",
+    "redirectLink": "https://desiplaza.us/",
+    "title": "Desiplaza.us",
+    "type": "co"
+  },
+  "-LSZBinEXk88UlwfAj8m": {
+    "bannerLg": "./assets/images/sponcers/nice-lg.png",
+    "bannerMd": "./assets/images/sponcers/nice-lg.png",
+    "bannerSm": "./assets/images/sponcers/nice-sm.png",
+    "logo": "https://www.mastitimeradio.com/tambola/assets/images/t_n_c_assets/avakaya_logo.png",
+    "mailBanner": "#",
+    "redirectLink": "http://niceglobalsolutions.com/",
+    "title": "Nice Global Solutions",
+    "type": "co"
+  }
+}

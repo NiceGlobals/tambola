@@ -1,0 +1,50 @@
+<section class="container-fluid px-0">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="fw-200">Logger</h3>
+      <hr class="mt-0">
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12">
+      <div class="btn-group btn-group-toggle buttons-nav" ngbRadioGroup name="radioBasic" [(ngModel)]="mode">
+        <label ngbButtonLabel class="btn btn-secondary px-4 py-2">
+          <input ngbButton type="radio" (change)="getLogs(2)" [value]="2"> Success
+        </label>
+        <label ngbButtonLabel class="btn btn-secondary px-4 py-2">
+          <input ngbButton type="radio" (change)="getLogs(0)" [value]="0"> Errors
+        </label>
+        <label ngbButtonLabel class="btn btn-secondary px-4 py-2">
+          <input ngbButton type="radio" (change)="getLogs(1)" [value]="1"> Warnings
+        </label>
+        <label ngbButtonLabel class="btn btn-secondary px-4 py-2">
+          <input ngbButton type="radio" (change)="getLogs(3)" [value]="3"> Info
+        </label>
+      </div>
+    </div>
+  </div>  
+</section>
+<section class="container-fluid px-0 mt-3">
+  <div class="row" *ngIf="this.logs">
+    <div class="col-12" style="min-width: 900px; max-width: 100%; overflow: auto;">
+      <table class="w3-table-all" id="logTable">
+        <thead>
+          <tr class="w3-red table-head">
+            <th></th>
+            <th>Time</th>
+            <th>Type</th>
+            <th>Message</th>
+            <th>Key Data</th>
+          </tr>
+        </thead>
+        <tr *ngFor="let log of logs; let i = index">
+          <td><small>{{ i + 1}}</small></td>
+          <td><small>{{getDateConverted(log.lit)}}</small></td>
+          <td><small>{{log.data.Type}}</small></td>
+          <td><small>{{log.data.message}}</small></td>
+          <td><small>{{log.data.email || log.data.key}}</small></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>

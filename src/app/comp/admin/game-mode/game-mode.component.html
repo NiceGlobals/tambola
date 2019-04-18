@@ -1,0 +1,164 @@
+<section class="main-section h-container2 bg-overlay p-3" *ngIf="vState == 0">
+  <div class="d-v-50 text-center">
+    <app-processing></app-processing>
+    <h6 class="text-center text-warning">{{stateMessage}}, please wait...</h6>
+  </div>
+</section>
+<section class="main-section h-container2 p-3" id="game_playing_mode" *ngIf="vState == 1">
+  <p class="text-center mt-5 text-danger">{{errMessage}}</p>
+  <p class="text-center">
+    <a routerLink="/admin" class="btn px-3 px-md-4 px-lg-5 py-2 btn-danger"><i class="material-icons mr-3">subdirectory_arrow_left</i>Go Back</a>
+  </p>
+</section>
+<section class="main-section h-container2 p-3" id="game_playing_mode" *ngIf="vState > 1">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="fw-200 my-3">Game Borad:</h3>
+      <hr class="mt-0">
+    </div>
+    <div class="col-12 mt-5">
+      <div class="row align-items-start">
+        <div class="col-6" *ngIf="this.vState == 2">
+          <div id="init-button" class="col-12 px-0 text-center init-buttons" *ngIf="!gameInitiated">
+            <div class="action-hover">
+              <button class="btn btn-danger action-button" (click)="initGame()">{{currentGame.gst > 0 ? 'Continue' : 'Init Game'}}</button>
+            </div>
+          </div>
+          <div class="w-100 text-center init-buttons"  *ngIf="gameInitiated">
+            <div class="action-hover">
+              <button class="btn btn-danger action-button picker-button" [disabled]="disablePick" (click)="pickNumber()" style="font-size: 1.5rem;" [ngClass]="dialText === 'Click Here' ? '':'click-number' ">{{dialText}}</button>
+            </div>
+          </div>
+          <div class="w-100 mt-5">
+            <p class="my-0 text-center">
+              <button class="btn px-5 py-2" (click)="submitPick()" [disabled]="currentPickedNumber == null" [ngClass]="currentPickedNumber == null ? '' : 'btn-danger'">Update to Public</button>
+            </p>
+            <p class="mb-3 mt-5 text-center">
+              <button class="btn btn px-5" (click)="confirmClose()" [disabled]="checkCanEnableClose()" [ngClass]="checkCanEnableClose() ? '':'btn-danger'"><i class="fa fa-times mr-2"></i> Close</button>
+            </p>
+          </div>
+          <div class="w-100 mt-5">
+            <h3 class="fw-200 my-3">Winners Entry:</h3>
+            <hr class="mt-0">
+            <div class="form-group">
+              <label>Fast five (or) Jaldi Five:</label>
+              <div class="input-group mb-3">
+                <input type="text" ngModel [(ngModel)]="fft.tid" name="fast-five" [readonly]="currentGame.winners.ff.claimed || serialCount < 5" class="text-uppercase form-control col-9">
+                <div class="input-group-append col-3 px-0">
+                  <button class="btn btn-danger w-100" type="button" (click)="updateWinner('ff', fft.tid)" [disabled]="currentGame.winners.ff.claimed || serialCount < 5">Update</button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>First Row:</label>
+              <div class="input-group mb-3">
+                <input type="text" ngModel [(ngModel)]="frt.tid" name="first-row" [readonly]="currentGame.winners.fr.claimed || serialCount < 5" class="text-uppercase form-control col-9">
+                <div class="input-group-append col-3 px-0">
+                  <button class="btn btn-danger w-100" type="button" (click)="updateWinner('fr', frt.tid)" [disabled]="currentGame.winners.fr.claimed || serialCount < 5">Update</button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Second Row:</label>
+              <div class="input-group mb-3">
+                <input type="text" ngModel [(ngModel)]="srt.tid" name="second-row" [readonly]="currentGame.winners.sr.claimed || serialCount < 5" class="text-uppercase form-control col-9">
+                <div class="input-group-append col-3 px-0">
+                  <button class="btn btn-danger w-100" type="button" (click)="updateWinner('sr', srt.tid)" [disabled]="currentGame.winners.sr.claimed  || serialCount < 5">Update</button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Third Row:</label>
+              <div class="input-group mb-3">
+                <input type="text" ngModel [(ngModel)]="trt.tid" name="third-row" [readonly]="currentGame.winners.tr.claimed || serialCount < 5" class="text-uppercase form-control col-9">
+                <div class="input-group-append col-3 px-0">
+                  <button class="btn btn-danger w-100" type="button" (click)="updateWinner('tr', trt.tid)" [disabled]="currentGame.winners.tr.claimed || serialCount < 5">Update</button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Full house 1:</label>
+              <div class="input-group mb-3">
+                <input type="text" ngModel [(ngModel)]="fht1.tid" name="full-house-1" [readonly]="currentGame.winners.fh1.claimed || serialCount < 15" class="text-uppercase form-control col-9">
+                <div class="input-group-append col-3 px-0">
+                  <button class="btn btn-danger w-100" type="button" (click)="updateWinner('fh1', fht1.tid)" [disabled]="currentGame.winners.fh1.claimed || serialCount < 15">Update</button>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="form-group">
+              <label>Full house 2:</label>
+              <div class="input-group mb-3">
+                <input type="text" ngModel [(ngModel)]="fht2.tid" name="full-house-2" [readonly]="currentGame.winners.fh2.claimed || !currentGame.winners.fh1.claimed" class="text-uppercase form-control col-9">
+                <div class="input-group-append col-3 px-0">
+                  <button class="btn btn-danger w-100" type="button" (click)="updateWinner('fh2', fht2.tid)" [disabled]="currentGame.winners.fh2.claimed || !currentGame.winners.fh1.claimed">Update</button>
+                </div>
+              </div>
+            </div> -->
+            <!-- <div class="form-group">
+              <label>Only Five:</label>
+              <div class="input-group mb-3">
+                <input type="text" ngModel [(ngModel)]="of.tid" name="only-5" [readonly]="currentGame.winners.of.claimed || !currentGame.winners.fh2.claimed" class="text-uppercase form-control col-9">
+                <div class="input-group-append col-3 px-0">
+                  <button class="btn btn-danger w-100" type="button" (click)="updateWinner('of', fht2.tid)" [disabled]="currentGame.winners.of.claimed || !currentGame.winners.fh2.claimed">Update</button>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-6" *ngIf="this.vState == 3">
+          Game Completed, No Action required.
+        </div>
+        <div class="col-6 text-right">
+          <table class="table table-bordered w3-card-4 table-cell-text-center mr-0">
+            <tr><th class="text-center" colspan="10"><h4 class="fw-600 my-0">Completed Numbers</h4></th></tr>
+            <tr>
+              <td *ngFor="let cell of currentGame.pnum | slice:0:10" [ngClass]="cell.picked ? 'c-act': ''">
+                {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td *ngFor="let cell of currentGame.pnum | slice:10:20" [ngClass]="cell.picked ? 'c-act': ''">
+                {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td *ngFor="let cell of currentGame.pnum | slice:20:30" [ngClass]="cell.picked ? 'c-act': ''">
+                {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td *ngFor="let cell of currentGame.pnum | slice:30:40" [ngClass]="cell.picked ? 'c-act': ''">
+                {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td *ngFor="let cell of currentGame.pnum | slice:40:50" [ngClass]="cell.picked ? 'c-act': ''">
+                {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td *ngFor="let cell of currentGame.pnum | slice:50:60" [ngClass]="cell.picked ? 'c-act': ''">
+                {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td *ngFor="let cell of currentGame.pnum | slice:60:70" [ngClass]="cell.picked ? 'c-act': ''">
+                {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td *ngFor="let cell of currentGame.pnum | slice:70:80" [ngClass]="cell.picked ? 'c-act': ''">
+                {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td *ngFor="let cell of currentGame.pnum | slice:80:90" [ngClass]="cell.picked ? 'c-act': ''">
+                {{cell.num}}<span class="dip-num">{{cell.serial}}</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

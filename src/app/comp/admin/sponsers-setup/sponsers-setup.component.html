@@ -1,0 +1,98 @@
+<section class="container-fluid px-0" *ngIf="viewMode == 0">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="fw-200">Sponsors</h3>
+      <hr class="mt-0">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-10 col-lg-8">
+      <p class="text-center text-md-right">
+        <button class="btn btn-danger px-5 py-2" (click)="newSponsor()">Add a sponsor</button>
+      </p>
+      <table class="table table-striped table-sm w-100">
+        <thead>
+        <tr>
+          <td class="sno" scope="col"><b>#</b></td>
+          <td scope="col"><b>Sponsor</b></td>
+          <td class="text-center" scope="col"><b>Manage</b></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let sponsor of sponsors; let i = index" ngClass="sponsors.length > 0 ? '': 'd-none'">
+          <td class="sno">{{i + 1}}</td>
+          <td>{{sponsor.title}}</td>
+          <td>
+            <a href="javascript:void(0)" (click)="editThisSponsor(sponsor)" class="btn btn-link py-0"><span class="fa fa-pencil"></span> Update</a>
+            <!-- <a href="javascript:void(0)" class="btn btn-link text-danger py-0"><span class="fa fa-trash"></span> Del</a> -->
+          </td>
+        </tr>
+        <tr *ngIf="!sponsors || sponsors.length < 1">
+          <td colspan="3" class="text-center">{{sponsorsListMessage}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-between py-2 px-1" *ngIf="sponsors && sponsors.length > pageSize">
+        <ngb-pagination [collectionSize]="sponsors.length" [(page)]="page" [pageSize]="pageSize">
+        </ngb-pagination>
+        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+          <option [ngValue]="15">15 items per page</option>
+          <option [ngValue]="25">25 items per page</option>
+          <option [ngValue]="50">50 items per page</option>
+          <option [ngValue]="sponsors.length">Show all</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container-fluid px-0" *ngIf="viewMode == 1">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="fw-200">Manage sponsor</h3>
+      <hr class="mt-0">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <form (ngSubmit)="onSubmit(fv.value)" #fv="ngForm">
+        <!-- <input type="checkbox" name="hiddenValue" ngModel [checked]="formHiddenVal" [(ngModel)]="formHiddenVal" ngControl="hiddenValue"> -->
+        <div class="row">
+          <div class="col-12">
+            <p><b>Note: </b>All fields marked with '<span class="text-danger" style="font-size: 150%; vertical-align: -8px">*</span>' are required</p>
+          </div>
+          <div class="col-md-8 col-lg-7 ml-auto mr-auto mr-md-auto ml-md-0">
+            <div class="form-group">
+              <label class="required" for="title">Title:</label>
+              <input type="text" name="title" id="title" autofocus #title="ngModel" [(ngModel)]="selSponsor.title" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="required" for="siteUrl">Redirect Url:</label>
+              <input type="url" name="siteUrl" value="https://" pattern="https?://.+" title="Include https://" id="siteUrl" #sUrl="ngModel" [(ngModel)]="selSponsor.siteUrl" class="form-control" required>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 form-group">
+            <app-file-input (dataOut)="onFileSelect(0, $event, fv)" [data-validation]="{type: 'img',size: 153600, strict: false, hint: 'Ideal if under 100 KB'}"
+            [data-label]="['Sponsor Logo', 'required']" [data-set]="['logoUrl', 'img', true, selSponsor.logoUrl]"></app-file-input>
+          </div>
+          <div class="col-12 col-md-6 form-group">
+            <app-file-input (dataOut)="onFileSelect(1, $event, fv)" [data-validation]="{type: 'img',size: 153600, strict: false, hint: 'Ideal resolution: 900*120px at 72 DPI & below 150 KB'}"
+            [data-label]="['Promo banner for desktop', 'required']" [data-set]="['blg', 'img', true, selSponsor.banners.blg]"></app-file-input>
+          </div>
+          <div class="col-12 col-md-6 form-group">
+            <app-file-input (dataOut)="onFileSelect(2, $event, fv)" [data-validation]="{type: 'img',size: 153600, strict: false, hint: 'Ideal resolution: 700*120px at 72 DPI & below 150 KB'}"
+            [data-label]="['Promo banner for tablet-pc', 'required']" [data-set]="['bmd', 'img', true, selSponsor.banners.bmd]"></app-file-input>
+          </div>
+          <div class="col-12 col-md-6 form-group">
+            <app-file-input (dataOut)="onFileSelect(3, $event, fv)" [data-validation]="{type: 'img',size: 153600, strict: false, hint: 'Ideal resolution: 384*130px at 72 DPI & below 100 KB'}"
+            [data-label]="['Promo banner for mobile', 'required']" [data-set]="['bsm', 'img', true, selSponsor.banners.bsm]"></app-file-input>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-danger mtb px-5 py-2" type="submit" [disabled]="fv.form.invalid || fv.form.pristine || formInvalid">Submit</button>
+          <button type="button" (click)="resState()" class="btn btn-link text-danger px-5 py-2" [disabled]="formSubmitted">Cancel</button>
+        </div>
+        <!-- {{fv.form.invalid }} {{ fv.form.pristine }} {{formInvalid}} -->
+      </form>
+    </div>
+  </div>
+</section>

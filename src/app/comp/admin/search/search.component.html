@@ -1,0 +1,32 @@
+<section class="container-fluid px-0">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="fw-200">Statistics</h3>
+      <hr class="mt-0">
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12">
+      <div class="btn-group btn-group-toggle buttons-nav" ngbRadioGroup name="radioBasic" [(ngModel)]="mode">
+        <label ngbButtonLabel class="btn-danger px-4 py-2">
+          <input ngbButton type="radio" [value]="0"> Games <span class="ml-3" *ngIf="stats">({{stats.games || ''}})</span>
+        </label>
+        <label ngbButtonLabel class="btn-danger px-4 py-2">
+          <input ngbButton type="radio" [value]="1"> Tickets <span class="ml-3" *ngIf="stats">({{stats.tickets || ''}})</span>
+        </label>
+        <label ngbButtonLabel class="btn-danger px-4 py-2">
+          <input ngbButton type="radio" [value]="2"> People <span class="ml-3" *ngIf="stats">({{stats.users || ''}})</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container-fluid px-0 mt-3 mt-3" *ngIf="mode == 0">
+<p>games selected</p>
+</section>
+<section class="container-fluid px-0 mt-3" *ngIf="mode == 1">
+<p>tickets selected</p>
+</section>
+<section class="container-fluid px-0 mt-3" *ngIf="mode == 2">
+  <app-userlist-comp></app-userlist-comp>
+</section>

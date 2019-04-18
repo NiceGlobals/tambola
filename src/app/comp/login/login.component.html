@@ -1,0 +1,88 @@
+<section class="container-fluid h-container2 p-3">
+  <div class="row login-box-container align-items-center h-100 w3-animate-zoom fast mx-0">
+    <div class="col-lg-6 col-sm-12 col-md-8 mx-auto w3-white px-md-5 px-sm-3 px-0 py-3 py-md-5 w3-card-4 login-box rounded" *ngIf="!loading">
+      <!-- <h5>Please fill the details</h5>
+      <hr class="mt-0 mb-4">
+      <br> -->
+      <form class="login-form" (ngSubmit)="submitForm(f1.value, 'f1')" #f1="ngForm" *ngIf="formState == 0" >
+        <p class="text-danger" *ngIf="loginError">{{loginErrorMsg}}</p>
+        <div class="email-input">
+          <label for="email">Email:<span class="required"></span></label>
+          <input class="w3-input" type="email" email name="email"  [(ngModel)]="email" id="email" placeholder="" required #email2="ngModel">
+          <small class="input-support w3-text-red w-100" *ngIf="email2.invalid && email2.touched">*Required, ex: email@test.com</small>
+        </div>
+        <div class="w-100">
+          <button class="btn btn-danger px-5 py-2 mt-4"  type="submit" [disabled]="f1.form.invalid">Submit</button>
+        </div>
+      </form>
+      <form class="login-form" (ngSubmit)="submitForm(f3.value, 'f3')" #f3="ngForm" *ngIf="formState == 2" >
+        <p>Please enter password for <b>"{{email}}"</b></p>
+        <div class="email-input">
+          <label for="password">Password:<span class="required"></span></label>
+          <input class="w3-input" type="password" pattern=".{6,10}" name="password" [(ngModel)]="password" id="password" placeholder="" required #password3="ngModel">
+          <small class="input-support w3-text-red w-100" *ngIf="password3.invalid && password3.touched">Required, Must be 6 to 10 characters long.</small>
+        </div>
+        <div class="w-100">
+          <button class="btn btn-danger px-5 py-2 mt-4"  type="Login" [disabled]="f3.form.invalid">Login</button>
+          <span class="d-inline-block">
+            <button class="btn btn-link px-3 py-1 mt-4 text-muted" (click)="sendPwdReset()" type="button">forgot password?</button>
+            <button class="btn btn-link px-3 py-1 mt-4 text-muted" (click)="resForm()" type="button">cancel</button>
+          </span>
+        </div>
+      </form>
+      <form class="login-form" (ngSubmit)="submitForm(f2.value, 'f2')" #f2="ngForm"  *ngIf="formState == 1">
+        <div class="row">
+          <div class="col-md-6 col-12 mb-3">
+            <label for="fname">First Name:<span class="required"></span></label>
+            <input class="w3-input" type="text" name="fname" [(ngModel)]="fname" id="fname" placeholder="" required ngModel>
+          </div>
+          <div class="col-md-6 col-12 mb-3">
+            <label for="lname">Last Name:<span class="required"></span></label>
+            <input class="w3-input" type="text" name="lname" [(ngModel)]="lname" id="lname" placeholder="" required ngModel>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label for="password">Password:<span class="required"></span></label>
+            <input class="w3-input" pattern=".{6,10}"
+              type="password" name="password" [(ngModel)]="password" id="password" placeholder=""  required #password2="ngModel">
+            <small class="input-support w3-text-red w-100" *ngIf="password2.invalid && password2.touched">Required, Must be 6 to 10 characters long.</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label for="phone">Phone:<span class="required"></span></label>
+            <input class="w3-input" pattern="[0-9]{1}[0-9]{9}"
+             type="text" name="phone" [(ngModel)]="phone" id="phone" placeholder="Please enter mobile number"  required #phone2="ngModel">
+            <small class="input-support w3-text-red w-100" *ngIf="phone2.invalid && phone2.touched">*Required, ex: 966257570</small>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-12">
+            <label>
+              <input class="w3-input"
+              type="checkbox" value="true"  name="check" id="check" ngModel placeholder="Please enter mobile number" required #check2="ngModel">
+              Accepting <a class="terms-nd-cond" >terms of service</a>
+            </label>
+             <small class="input-support w3-text-red w-100" *ngIf="check2.invalid && check2.touched">*Required</small>
+          </div>
+        </div> -->
+        <div class="w-100 mt-5">
+          <button type="submit" class="btn btn-danger py-2 px-5" [disabled]="f2.form.invalid">Sign up</button>
+          <button class="btn btn-link px-3 py-2 text-muted" (click)="resForm()" type="button">cancel</button>
+        </div>
+        <hr class="mb-0">
+        <div class="w-100 mt-3">
+          <p class="text-muted my-0 lh-1">
+            <small>By clicking "Sign Up", you acknowledge that you have read our updated <a class="d-inline-block text-danger" target="_blank" href="https://www.mastitimeradio.com/">terms of service &amp; privacy policy</a>, and that your continued use of the website is subject to these policies.</small>
+          </p>
+        </div>
+      </form>
+    </div>
+    <div class="col mx-auto" *ngIf="loading">
+      <div class="text-center">
+        <app-processing></app-processing>
+      </div>
+    </div>
+  </div>
+</section>

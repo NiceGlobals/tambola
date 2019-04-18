@@ -1,0 +1,100 @@
+.mop-game-table {
+  width: 100%;
+}
+
+.mop-game-table th,
+.mop-game-table td {
+  width: 10%;
+}
+
+.table-cell-text-center td {
+  padding: 8px 0px 0px 8px;
+  vertical-align: top;
+  height: 50px;
+  /* width: 40px; */
+  text-align: left;
+  font-size: 1.125rem;
+  line-height: 1;
+  font-weight: 600;
+  width: 10%;
+  position: relative;
+  color: #777;
+}
+
+
+td.c-act {
+  background-color: #25be25;
+  color: #fff !important;
+}
+
+td.c-act.c-last {
+  /* background-color: #f44336!important; */
+  background-color: #000!important;
+  background-image: url('/assets/images/icons/td-bg.svg');
+  background-position: center;
+  background-size: 150%;
+  background-repeat: no-repeat;
+  color: #fff !important;
+}
+
+td:not(.c-act) span.dip-num {
+  display: none;
+}
+
+td.c-last span.dip-num {
+  color: #fff;
+}
+
+span.dip-num {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #000;
+}
+
+.prize-card {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.prize-card-header {
+  background-color: #777;
+  color: #fff;
+  font-weight: 400;
+  padding: 6px 12px;
+}
+
+.prize-card-status {
+  padding: 6px 18px 6px 12px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.sponcer-block {
+  position: relative;
+  display: inline-block;
+  margin: 0px;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.sponcer-link {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.sponcer-icon {
+  position: absolute;
+  z-index: 92;
+  top: 1px;
+  right: 1px;
+  width: 80px;
+  height: 25px;
+  background-image: url(/assets/images/icons/sponcers-block-icon.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center right;
+}

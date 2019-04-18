@@ -1,0 +1,25 @@
+<div>
+  <label class="d-block" [ngClass]="dataLabel[1]">{{dataLabel[0]}}:</label>
+  <label class="bg-primary file-input py-2 px-2" [for]="dataSet[0]">
+    <input [required]="dataLabel[1]" type="file" (change)="onFileSelect($event)" ngModel [name]="dataSet[0]" [accept]="setAccept(dataValid.type)" [id]="dataSet[0]"><i class="fa fa-cloud-upload"></i>Select file
+  </label>
+  <p class="help-text">{{dataValid.hint}}</p>
+</div>
+<span class="banner-img" *ngIf="dataSet[2]">
+  <img [src]="selFile.buffer" [alt]="selFile.file.name"  *ngIf="selFile.file">
+  <img [src]="dataSet[3]" alt="" *ngIf="((dataSet[2] && dataSet[3]) || dataSet[3]) && (selFile.file == null)">
+  <p class="my-0">
+    <small class="text-muted" *ngIf="selFile.file">
+      <span class="d-inline-block"><b>file name: </b><span class="text-primary">{{selFile.file.name | shortedString:'30'}}</span>,</span>
+      <span class="d-inline-block"><b>file size: </b>{{selFile.file.size | memSize}}</span>
+    </small>
+  </p>
+</span>
+
+<!-- Sample Template -->
+<!--
+
+<app-file-input (dataOut)="onFileSelect(3, $event, fv)" [data-validation]="{type: 'img',size: 153600, strict: false, hint: 'Ideal resolution: 384*130px at 72 DPI & below 100 KB'}"
+[data-label]="['Promo banner for mobile', 'required']" [data-set]="['bsm', 'img', true, selSponsor.banners.bsm]"></app-file-input>
+
+-->

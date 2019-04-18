@@ -1,0 +1,75 @@
+<section class="container-fluid h-container2 p-3" *ngIf="!userTickets">
+  <div class="row">
+    <div class="col-12 mt-5">
+        <p class="text-center">You are not registered to any games yet, please click below to get tickets</p>
+        <p class="text-center mt-5"><a routerLink="/games" class="btn btn-danger py-2 px-5">Get tickets here</a></p>
+    </div>
+  </div>
+</section>
+<section class="container-fluid h-container2 p-3" *ngIf="userTickets && !ticketSelected">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="fw-200">List of registered tickets</h3>
+      <hr class="my-3">
+    </div>
+  </div>
+  <div class="form-row">
+    <a routerLink="/games" class="col-12 col-lg-5 col-xl-5 col-md-6 col-sm-12 mb-3 ticket-thumb">
+      <div class="ticket-list-box row mx-0 rounded align-items-center">
+        <div class="col ticket-icon new">
+          <div class="aspr-11"></div>
+        </div>
+        <div class="col ticket-data-area">
+          <h4 class="mt-0 mb-1 lh1">New Ticket</h4>
+        </div>
+      </div>
+    </a>
+    <div class="col-12 col-lg-5 col-xl-5 col-md-6 col-sm-12 mb-3 ticket-thumb" *ngFor="let ticket of userTickets">
+      <div class="ticket-list-box row mx-0 rounded align-items-center" (click)="vewTicket(ticket[1])">
+        <div class="col ticket-icon">
+          <div class="aspr-11"></div>
+        </div>
+        <div class="col ticket-data-area">
+          <h4 class="mt-0 mb-2 lh1">{{ticket[0]}}</h4>
+          <!-- <p class="my-0 lh1"><i class="fa fa-clock-o mr-2"></i>{{ticket[2] | date:'MMM d, y, h:mm a'}}</p> -->
+          <p class="mb-0 mt-1 lh1"><i class="fa fa-clock-o mr-2"></i>{{getConvertedDate(ticket[2])}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container-fluid h-container2 p-3" *ngIf="ticketSelected" id="ticketContent" #ticketContent>
+  <div class="row">
+    <div class="col-12 ticket-lg-container" style="overflow: scroll">
+      <div class="ticket-block-lg"style="width: 620px !important;">
+        <div class="ticket-card card-lg">
+          <div class="ticket-bg-image">
+            <img src="./assets/images/ticket_bg2_cdr.svg" alt="">
+          </div>
+          <div class="ticket-data data-lg">
+            <!-- <h5 class="ticket-code fw-700"><small><i>#</i></small> {{selectedTicket.tid}} - <span><i class="fa fa-clock-o mr-2"></i>Game starts at: {{selectedTicket.gt | date:'MMM d, y, h:mm a zzzz'}}</span></h5> -->
+            <h5 class="ticket-code fw-700"><small><i>#</i></small> {{selectedTicket.tid}} - <span><i class="fa fa-clock-o mr-2"></i>Game starts at: {{getConvertedDate(selectedTicket.gt)}}</span></h5>
+            <div class="w-100 px-3">
+              <div class="row tr tr-1">
+                <div class="col tc" *ngFor="let dt of selectedTicket.tArr[0]"><div class="tc-data">{{dt != 0 ? dt : ''}}</div></div>
+              </div>
+              <div class="row tr tr-2">
+                <div class="col tc" *ngFor="let dt of selectedTicket.tArr[1]"><div class="tc-data">{{dt != 0 ? dt : ''}}</div></div>
+              </div>
+              <div class="row tr tr-3">
+                <div class="col tc" *ngFor="let dt of selectedTicket.tArr[2]"><div class="tc-data">{{dt != 0 ? dt : ''}}</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 pl-sm-4 mt-4">
+      <p class="my-0 no-print">
+        <button class="btn btn-danger py-2 px-sm-5 px-4 mr-2 mb-2" (click)="printTicket()" id="print-button" disabled="disabled"><i class="material-icons mr-3">local_printshop</i>Print</button>
+        <button class="btn py-2 px-sm-5 px-4 mr-2 mb-2" (click)="resetAllState()"><i class="material-icons mr-3">close</i>Close</button>
+      </p>
+      <iframe [src]="trustedUrl" class="w-100 mt-3" style="min-height: 30vh;" frameborder="0" onload="resizeIframe(this)">Loading...</iframe>
+    </div>
+  </div>
+</section>

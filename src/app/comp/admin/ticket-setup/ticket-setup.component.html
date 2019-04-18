@@ -1,0 +1,141 @@
+<section class="container-fluid px-0">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="fw-200">Search the ticket</h3>
+      <hr class="mt-0">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+      <div class="input-group mb-3 search-bar-cust">
+        <input type="text" name="tid" onkeyup="filterTicket()" id="ticketSearchInput" [(ngModel)]="ticketId" required #tid="ngModel" class="text-uppercase form-control py-2 px-3 px-md-4" placeholder="Ticket number">
+        <div class="input-group-append">
+          <button (click)="searchTicket()" class="btn btn-danger px-4 px-md-4 px-md-5 py-2" id="button-addon2" [disabled]="tid.invalid || !ticketId || ticketId.length < 8 || ticketId == undefined"><i class="fa fa-search"></i><span class="d-none d-sm-inline ml-3">Search</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container-fluid px-0">
+  <div class="row">
+    <div class="col-12">
+      <p class="fw-300 mt-5 text-muted p-heading">
+        <span >{{noTicket ? 'List of Tickets:': 'Ticket Data:'}}</span>
+        <span class="pull-right" *ngIf="noTicket">
+          <!-- <a class="cta-export" href="javascript:void(0)" (click)="exportData()">
+            <img src="./assets/images/icons/Microsoft_Excel_2013_logo.svg" alt="click_to_export">Export to csv
+          </a> -->
+        </span>
+      </p>
+      <hr class="mt-0">
+    </div>
+  </div>
+</section>
+<section class="container-fluid px-0" *ngIf="(searchedTicket !== undefined || searchedTicket != null) && !noTicket">
+  <div class="row">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-7">
+      <table class="table table-bordered">
+        <tr><td><b>Ticket Number:</b></td><td><span class="text-uppercase">{{searchedTicket.tid}}</span></td></tr>
+        <tr><td><b>Registration time:</b></td><td><span class="text-uppercase">{{searchedTicket.tit ? getDateConverted(searchedTicket.tit): 'NA'}}</span></td></tr>
+        <tr><td><b>Game Time:</b></td><td><span class="text-uppercase">{{getDateConverted(searchedTicket.gt)}}</span></td></tr>
+        <tr><td><b>Ticket holder name:</b></td><td><span class="text-uppercase">{{searchedTicket.userName || 'NA'}}</span></td></tr>
+        <tr><td><b>Contact:</b></td><td><span class="text-uppercase">{{searchedTicket.phone || 'NA'}}</span></td></tr>
+        <tr><td><b>Email:</b></td><td><span class="">{{searchedTicket.email || 'NA'}}</span></td></tr>
+      </table>
+    </div>
+    <div class="col-12 col-md-10 col-lg-8 col-xl-7">
+      <table class="table table-bordered">
+        <tr><th colspan="9">Ticket Data:</th></tr>
+        <tr>
+          <td class="text-center ticket-cell" *ngFor="let td of searchedTicket.tArr[0]"><b>{{td != 0 ? td:' '}}</b></td>
+        </tr>
+        <tr>
+          <td class="text-center ticket-cell" *ngFor="let td of searchedTicket.tArr[1]"><b>{{td != 0 ? td:' '}}</b></td>
+        </tr>
+        <tr>
+          <td class="text-center ticket-cell" *ngFor="let td of searchedTicket.tArr[2]"><b>{{td != 0 ? td:' '}}</b></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-12 col-md-10 col-lg-8 col-xl-7">
+      <p class="my-0"><button class="btn btn-danger px-4 px-md-5 py-1 py-md-2" (click)="resState2()">Cancel</button></p>
+    </div>
+  </div>
+</section>
+<section class="container-fluid px-0" *ngIf="noTicketFound">
+  <div class="row">
+    <div class="col-12">
+      <p class="text-muted">! No ticket found. Please check the ticket number and try again.</p>
+    </div>
+  </div>
+</section>
+<section class="container-fluid px-0" *ngIf="noTicket && !noTicketFound">
+  <div class="row" *ngIf="this.ticketsSnap">
+    <div class="col-12 my-1">
+      <p>
+        <span>
+          <a class="cta-export" href="javascript:void(0)" (click)="exportData()">
+            <img src="./assets/images/icons/Microsoft_Excel_2013_logo.svg" alt="click_to_export">Export to csv
+          </a>
+        </span>
+        <!-- <span class="text-muted"> -->
+        <span class="float-md-right text-muted pr-0 pr-sm-3 pr-md-4 pr-lg-5">
+          <span class="mr-3">
+            <span class="d-inline-block">Filter by game:</span>
+            <select style="min-width: 125px;" class="rangeSelect" name="ticketFilter" id="ticketFilter" (change)="filterByGame()"  [(ngModel)]="gameFilter" >
+                <option value="all">All Games</option>
+              <option *ngFor="let game of gamesList" [ngValue]="game.gid">{{game.gt | date}}</option>
+            </select>
+          </span>
+          Items per page: 
+          <select class="rangeSelect" (change)="adjustRange()" name="rangeSelect" [(ngModel)]="smr" id="rangeSelect">
+            <option *ngFor="let step of countStep" [ngValue]="step">{{step}}</option>
+            <!-- <option [ngValue]="15">15</option>
+            <option [ngValue]="25">25</option>
+            <option [ngValue]="50">50</option>
+            <option [ngValue]="100">100</option> -->
+          </select>
+          <span class="d-inline-block ml-2" style="min-width: 175px">
+            <!-- Showing {{smi + 1}} - {{tickets.length > smx ? smx : tickets.length}} of {{tickets.length}} -->
+            Showing {{smi + 1}} - {{ticketsSnap.length > smx ? smx : ticketsSnap.length}} of {{ticketsSnap.length}}
+          </span>
+          <span class="ml-2 prev-next-buttons">
+            <button (click)="ticketsPerPage(0)" [disabled]="smi == 0">
+              <i class="material-icons">skip_previous</i>
+            </button>
+            <button class="pr-1" (click)="ticketsPerPage(1)" [disabled]="smi < 10">
+              <i class="material-icons mr-1">keyboard_arrow_left</i>Prev
+            </button>
+            <button class="pl-1" (click)="ticketsPerPage(2)" [disabled]="smx >= ticketsSnap.length">
+              Next<i class="material-icons ml-1">keyboard_arrow_right</i>
+            </button>
+            <button (click)="ticketsPerPage(3, ticketsSnap.length)" [disabled]="smx >= ticketsSnap.length">
+              <i class="material-icons">skip_next</i>
+            </button>
+          </span>
+        </span>
+      </p>
+    </div>
+    <div class="col-12" style="min-width: 900px; max-width: 100%; overflow: auto;">
+      <table class="w3-table-all" id="ticketsTable">
+        <thead>
+          <tr class="w3-red table-head">
+            <!-- <th>{{tickets.length || ''}}</th> -->
+            <th>S.No.</th>
+            <th colspan="1">Ticket ID</th>
+            <th colspan="1">Game Time</th>
+            <th>Name</th>
+            <th>Contact</th>
+          </tr>
+        </thead>
+        <tr *ngFor="let ticket of ticketsSnap | slice:smi:smx; let i = index" (click)="searchTicket(ticket.tid)">
+          <td>{{ smi + i + 1}}</td>
+          <td>{{ticket.tid}}</td>
+          <td>{{getDateConverted(ticket.gt)}}</td>
+          <td><span *ngIf="ticket.userName">{{ticket.userName.length > 20 ? (ticket.userName | slice:0:17)+'...' : ticket.userName}}</span><span *ngIf="!ticket.userName">NA</span></td>
+          <td>{{ticket.email || 'NA'}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,185 @@
+<section class="container-fluid px-0" *ngIf="state == 0">
+  <div class="form-row game-list-row">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-2"  (click)="createNewGame()">
+      <div class="ticket-list-box admin-game-thumb w-100 d-block">
+        <p class="text-center admin-game-icon">
+          <!-- <i class="material-icons">all_inclusive</i> -->
+          <img src="./assets/images/logo-sm.jpg" alt="">
+        </p>
+        <p class="text-center admin-game-data"><i class="material-icons mr-2 lh1">add_circle_outline</i> New Game</p>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-2" *ngFor="let game of games">
+      <div class="ticket-list-box admin-game-thumb w-100 d-block" (click)="selGame(game)">
+        <p class="text-center admin-game-icon">
+          <!-- <i class="material-icons">all_inclusive</i> -->
+          <img src="./assets/images/logo-sm.jpg" alt="">
+        </p>
+        <p class="admin-game-data px-2">
+          <i class="fa fa-dot-circle-o mr-2" [ngClass]="game.showPublic ? 'text-success': 'text-danger'"></i>
+          {{ game.gt | date:'medium'}}
+          <span class="d-inline-block pull-right" *ngIf="game.gst > 1">
+            <i class="fa fa-check text-danger"></i>
+          </span>
+          <span class="d-inline-block pull-right" *ngIf="game.gst == 1">
+            <i class="fa fa-exclamation-triangle text-warning"></i>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container-fluid px-0" *ngIf="state == 2">
+  <div class="row">
+    <div class="col">
+      <p class="text-right">
+        <button class="btn btn-success px-3 px-md-4 px-lg-5 py-2 mr-3" *ngIf="selectedGame.gst < 2" (click)="startGame(selectedGame.gid)">
+          <i class="material-icons mr-3">playlist_add_check</i>{{selectedGame.gst < 1 ? 'Start':'Continue'}}</button>
+        <button class="btn btn-primary px-3 px-md-4 px-lg-5 py-2 mr-3" *ngIf="selectedGame.gst > 1" (click)="viewResults(selectedGame.gid)">
+          <i class="material-icons mr-3">remove_red_eye</i>View Results
+        </button>
+        <button class="btn px-3 px-md-4 px-lg-5 py-2 mr-3" (click)="editGame()" *ngIf="selectedGame.gst < 1"><i class="material-icons mr-3">create</i>Edit</button>
+        <button class="btn px-3 px-md-4 px-lg-5 py-2 btn-danger" (click)="resSate()"><i class="material-icons mr-3">close</i>Close</button>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h3 class="fw-200">Game Data</h3>
+      <hr class="mt-0">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-lg-8">
+      <table class="w3-table-all">
+        <thead><tr class="w3-red"><th colspan="2">Game Starting Time: {{selectedGame.gt | date:'medium'}}</th></tr></thead>
+        <tr><td>Registrations Starts from</td><td>{{selectedGame.st | date:'medium'}}</td></tr>
+        <tr><td>Registrations end at</td><td>{{selectedGame.et | date:'medium'}}</td></tr>
+        <tr><td>Available for public</td><td>{{selectedGame.showPublic ? 'Yes': 'No'}}</td></tr>
+        <tr><td>Game results page link</td><td>https://www.mastitimeradio.com/tambola/games/game_results/{{selectedGame.gid}}</td></tr>
+      </table>
+    </div>
+    <div class="col-12">
+      <iframe [src]="trustedUrl" class="w-100 mt-4" style="min-height: 30vh;" frameborder="0" onload="resizeIframe(this)">Loading...</iframe>
+    </div>
+  </div>
+</section>
+<section class="container-fluid px-0" *ngIf="state == 1">
+  <div class="row">
+    <div class="col">
+      <p class="text-right">
+        <button class="btn px-3 px-md-4 px-lg-5 py-2 btn-primary mr-3" (click)="saveGame()" [disabled]="gf.form.invalid || gf.form.pristine || gameSubmitted"><i class="material-icons mr-3">save</i>Save</button>
+        <button class="btn px-3 px-md-4 px-lg-5 py-2 btn-danger" (click)="resSate()"><i class="material-icons mr-3">close</i>Cancel</button>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h3 class="fw-200">{{selectedGame ? 'Update the': 'Shedule new'}} game</h3>
+      <hr class="mt-0">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-xl-8 col-lg-10 mx-auto">
+      <form (ngSubmit)="saveGame()" #gf="ngForm">
+        <div class="row">
+          <div class="col-12 col-md-6 form-group">
+            <label for="gt">Game Starting time:</label>
+            <input type="datetime-local" class="form-control" name="gt" (change)="console.log(gT.value)" [(ngModel)]="newGame.gt" required #gT="ngModel">
+          </div>
+          <div class="col-12 col-md-6 form-group">
+            <label for=""> </label>
+            <p class="pt-3 my-0"><b>{{newGame.gt | date:'MMM d, y, h:mm a zzzz'}}</b></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 form-group">
+            <label for="st">Registrations Starts at:</label>
+            <input type="datetime-local" class="form-control" name="st" [(ngModel)]="newGame.st" required #gSt="ngModel">
+          </div>
+          <div class="col-12 col-md-6 form-group">
+            <label for=""> </label>
+            <p class="pt-3 my-0"><b>{{newGame.st | date:'MMM d, y, h:mm a zzzz'}}</b></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 form-group">
+            <label for="et">Registrations end by:</label>
+            <input type="datetime-local" class="form-control" name="et"  [(ngModel)]="newGame.et" required #gEt="ngModel">
+          </div>
+          <div class="col-12 col-md-6 form-group">
+            <label for=""> </label>
+            <p class="pt-3 my-0"><b>{{newGame.et | date:'MMM d, y, h:mm a zzzz'}}</b></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 form-group">
+            <label for="tc">Terms &amp; Conditions page Path:</label>
+            <input type="text" class="form-control" name="tc"  [(ngModel)]="newGame.tc" required #gTerms="ngModel">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 form-group">
+            <label for="tc">Game runs on:</label>
+            <input type="text" class="form-control" name="grn" [(ngModel)]="newGame.gameRunsOn" required #gRuns="ngModel">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 form-group">
+            <label for="tc">Game thumb:</label>
+            <input type="text" class="form-control" name="gt1" [(ngModel)]="newGame.gameThumb" required #gThumb="ngModel">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 form-group">
+            <label class="" for="showPublic">
+              <input type="checkbox" class="form-control mr-3" name="showPublic" id="showPublic"  [(ngModel)]="newGame.showPublic" #gTerms="ngModel">Available for public
+            </label>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-12">
+            <p class="my-3">
+              <button class="btn px-3 px-md-4 px-lg-5 py-2 btn-primary mr-3">Save</button>
+            </p>
+          </div>
+        </div> -->
+      </form>
+    </div>
+    <div class="col-12 col-xl-8 col-lg-10 mx-auto">
+      <p class="">
+        <button class="btn px-3 px-md-4 px-lg-5 py-2 btn-primary mr-3" (click)="saveGame()" [disabled]="gf.form.invalid || gf.form.pristine || gameSubmitted"><i class="material-icons mr-3">save</i>Save</button>
+        <button class="btn px-3 px-md-4 px-lg-5 py-2 btn-danger" (click)="resSate()"><i class="material-icons mr-3">close</i>Cancel</button>
+      </p>
+    </div>
+  </div>
+</section>
+<section class="container-fluid px-0" *ngIf="state == 3">
+  <div class="row">
+    <div class="col">
+      <p class="text-right">
+        <button class="btn px-3 px-md-4 px-lg-5 py-2 mr-3" (click)="editGame()"><i class="material-icons mr-3">create</i>Edit</button>
+        <button class="btn px-3 px-md-4 px-lg-5 py-2 btn-danger" (click)="resSate()"><i class="material-icons mr-3">close</i>Close</button>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h3 class="fw-200">Start Game</h3>
+      <hr class="mt-0">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-lg-8">
+      <table class="w3-table-all">
+        <thead><tr class="w3-red"><th colspan="2">Game Starting Time: {{selectedGame.gt | date:'medium'}}</th></tr></thead>
+        <tr><td>Registrations Starts from</td><td>{{selectedGame.st | date:'medium'}}</td></tr>
+        <tr><td>Registrations end at</td><td>{{selectedGame.et | date:'medium'}}</td></tr>
+        <tr><td>Available for public</td><td>{{selectedGame.showPublic ? 'Yes': 'No'}}</td></tr>
+      </table>
+    </div>
+    <div class="col-12">
+      <iframe [src]="trustedUrl" class="w-100 mt-4" style="min-height: 30vh;" frameborder="0" onload="resizeIframe(this)">Loading...</iframe>
+    </div>
+  </div>
+</section>

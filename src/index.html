@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tambola | Mastitime Radio</title>
+  <base href="/">
+  <meta property="og:image" content="https://www.mastitimeradio.com/tambola-dam/img/game_thumb.png"/>
+  <script type="text/javascript">
+    var pageURL = window.location.href;
+    var x = pageURL.split("mastitimeradio.com");
+    // console.log(x);
+    if (x[0] !== "https://www." && pageURL.toLowerCase().indexOf('localhost:4300') < 0) {
+      // console.log("secure redirect");
+      window.location.assign("https://www.mastitimeradio.com" + x[1]);
+    }
+  </script>
+
+  <!-- <meta name="Description" content="Written by A.N. Author, Illustrated by V. Gogh, Price: $17.99,Length: 784 pages"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="assets/images/favicon_img.png">
+  <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="assets/css/bootstrap4.min.css" rel="stylesheet">
+  <link href="assets/css/w3.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script type="text/javascript">
+    var $st;
+  </script>
+<style>
+  .spin2{animation:w3-spin 0.8s infinite linear}@keyframes w3-spin{0%{transform:rotate(0deg)}100%{transform:rotate(359deg)}}
+</style>
+</head>
+<body>
+  <app-root>
+    <div class="main-load">
+
+      <div class="w3-display-middle">
+        <!-- <div class="spinner w3-red"></div> -->
+        <!-- <img class="spin2" src="/assets/images/loading.svg" style="width: 150px; height: auto;" alt=""> -->
+        <img src="./assets/images/audio.svg" style="width: 80px; height: auto;" alt="">
+        <p class="text-center my-2" style="font-size: 16px; color: #333;">Loading...</p>
+      </div>
+    </div>
+  </app-root>
+  <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
+  <!-- <script src="jquery.numscroller-1.0.js"></script> -->
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <!-- <script src="assets/js/functions.js"></script> -->
+  <script>
+    function resizeIframe(obj) {
+      obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+      iframeLoaded();
+    }
+    function iframeLoaded() {
+      $("#print-button").prop("disabled", false);
+      $("#gameCtaBtn").prop("disabled", false);
+    }
+  </script>
+  <script type="text/javascript">
+    document.addEventListener('click', function(e) {
+    if(document.activeElement.toString() == '[object HTMLButtonElement]') {
+      setTimeout(function() {
+          document.activeElement.blur();
+        }, 350);
+      }
+    });
+  </script>
+  <script>
+    function filterTicket() {
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("ticketSearchInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("ticketsTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<section class="main-section p-3">
+  <ngb-tabset #t="ngbTabset">
+    <ngb-tab id="tab-id1">
+      <ng-template ngbTabTitle><i class="material-icons">developer_board</i><span class="tab-link-text">Games</span></ng-template>
+      <ng-template ngbTabContent>
+        <app-game-setup></app-game-setup>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="tab-id2">
+      <ng-template ngbTabTitle><i class="material-icons">confirmation_number</i><span class="tab-link-text">Tickets</span></ng-template>
+      <ng-template ngbTabContent>
+        <app-ticket-setup></app-ticket-setup>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="tab-id3">
+      <ng-template ngbTabTitle><i class="material-icons">insert_chart</i><span class="tab-link-text">Statistics</span></ng-template>
+      <ng-template ngbTabContent>
+        <app-search></app-search>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="tab-id4">
+      <ng-template ngbTabTitle><i class="material-icons">perm_scan_wifi</i><span class="tab-link-text">Logs</span></ng-template>
+      <ng-template ngbTabContent>
+        <app-logs></app-logs>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="tab-id5">
+      <ng-template ngbTabTitle><i class="material-icons">people</i><span class="tab-link-text">Sponcers</span></ng-template>
+      <ng-template ngbTabContent>
+        <app-sponsers-setup></app-sponsers-setup>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</section>

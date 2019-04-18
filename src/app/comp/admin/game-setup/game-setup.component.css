@@ -1,0 +1,10 @@
+.admin-game-thumb {
+  border-radius: 6px !important;
+  overflow: hidden;
+}
+.admin-game-icon i{
+  font-size: 3rem !important;
+}
+.game-list-row .col-12 {
+  max-width: 258px !important;
+}

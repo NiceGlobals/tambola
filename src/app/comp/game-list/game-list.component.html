@@ -1,0 +1,187 @@
+<div class="container-fluid p-3 h-container2">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="fw-200 my-3">Available games:</h3>
+      <hr class="mt-0">
+    </div>
+  </div>
+  <div class="form-row justify-content-start mt-2" style="max-width: 100%;">
+    <div class="col-xl-3 col-lg-4 col-12 col-md-5 col-sm-6 game-card-sm" *ngFor="let game of curGame" [ngClass]="game.showPublic ? '': 'd-none'">
+      <a (click)="selectGame(game)" class="game-tile mb-3">
+        <img src="./assets/images/logo-sm.jpg" alt="">
+        <div class="d-block" *ngIf="game.gst < 1">
+          <p class="fw-500 mt-2 mb-1 mx-3"><i class="fa fa-clock-o mr-2"></i>Game start at</p>
+          <p class="fw-500 mb-2 mt-1 mx-3">{{getConvertedDate(game.gt)}} <span *ngIf="game.gameRunsOn">on <strong class="text-danger">{{game.gameRunsOn}}</strong></span></p>
+        </div>
+        <div class="d-block" *ngIf="game.gst == 1">
+          <p class="m-4 fw-500 text-danger">
+            <i class="fa fa-dot-circle-o mr-2"></i>in progress
+            <button class="btn btn-secondary pull-right px-2 py-0"><small><i class="fa fa-eye mr-2"></i>View</small></button>
+          </p>
+        </div>
+        <div class="d-block" *ngIf="game.gst > 1">
+          <p class="m-4 fw-500">
+            <i class="text-success fa fa-check mr-2"></i>Completed
+            <button class="btn btn-secondary pull-right px-2 py-0"><small><i class="fa fa-eye mr-2"></i>View</small></button>
+          </p>
+        </div>
+      </a>
+    </div>
+    <div class="col-12" *ngIf="gamesLoaded && curGame.length < 1">
+      <div class="col-xl-3 col-lg-4 col-12 col-md-5 col-sm-6 game-card-sm px-0">
+        <a href="javascript:void(0)" class="game-tile mb-3">
+          <img src="./assets/images/logo-sm.jpg" alt="">
+          <div class="d-block">
+            <p class="fw-500 text-muted m-4"><i class="fa fa-circle mr-2"></i>Coming soon</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-12 mt-4 col-xl-9 mt-xl-0 pl-xl-4" *ngIf="curGame.length > 0">
+      <h3 class="mb-2 mt-xl-0" style="line-height: 1 !important">Sponsors:</h3>
+      <div style="padding: 0px 8px 16px 0px;">
+        <ul class="terms-li sponcers" style="width:100%;">
+          <!-- <li class="major-sponsors"><a href="https://www.mastitimeradio.com/" target="_blank"><img alt="funasia_next" src="https://mastitimeradio.com/images/mastitime-300.png"/></a></li> -->
+          <li><a href="https://www.binarycreation.com/" target="_blank"><img alt="binarycreation" src="https://www.mastitimeradio.com/tambola-dam/img/binary_creations_logo_sm.png"/></a></li>
+          <li><a href="http://niceglobalsolutions.com" target="_blank"><img alt="" src="https://www.mastitimeradio.com/tambola/assets/images/t_n_c_assets/nice_logo.jpeg" /></a></li>
+          <li><a href="https://www.starkalakaar.com/register/" target="_blank" class="link"><img alt="Star_Kalakar" src="https://www.mastitimeradio.com/tambola/assets/images/t_n_c_assets/kalakar.png"/></a>  </li>
+          <!-- <li><a href="https://desiplaza.us/" target="_blank" class="link"><img alt="Desiplaza_US" src="https://www.mastitimeradio.com/tambola/assets/images/t_n_c_assets/desiplaza_us.png"/></a></li> -->
+          <li><a href="http://desiplaza.tv/" target="_blank" class="link"><img alt="Desi_Plaza_TV" src="https://www.mastitimeradio.com/tambola/assets/images/t_n_c_assets/dptv.jpg"/></a></li>
+          <!-- <li class="major-sponsors"><a href="https://www.facebook.com/FunasiaNEXT/" target="_blank"><img alt="funasia_next" src="https://www.mastitimeradio.com/tambola-dam/img/Funasia-FB-Profile.jpg"/></a></li>
+          <li class="major-sponsors"><a href="https://www.facebook.com/FunasiaNEXT/" target="_blank"><img alt="funasia_next" src="https://www.mastitimeradio.com/tambola-dam/img/Funasia-Next-2.jpg"/></a></li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h3 class="fw-200 my-3">Completed games:</h3>
+      <hr class="mt-0">
+    </div>
+  </div>
+  <div class="form-row justify-content-start mt-2" style="max-width: 1000px;">
+    <div class="col-xl-3 col-lg-4 col-12 col-md-5 col-sm-6 game-card-sm" *ngFor="let game of completedGame" [ngClass]="game.showPublic ? '': 'd-none'">
+      <a (click)="selectGame(game)" class="game-tile mb-3">
+        <img src="./assets/images/logo-sm.jpg" alt="">
+        <div class="d-block" *ngIf="game.gst > 1">
+          <p class="m-4 fw-500">
+            <i class="text-success fa fa-check mr-2"></i>{{game.gt | date:'LLL, yyyy'}}
+            <button class="btn btn-secondary pull-right px-2 py-0"><small><i class="fa fa-eye mr-2"></i>View</small></button>
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <!-- <div class="row">
+    <div class="col-12">
+      <h3 class="fw-200 my-3">Media sponsors</h3>
+      <hr class="mt-0">
+      <ul class="terms-li sponcers" style="width:100%;">
+        <li><a href="https://www.binarycreation.com/" target="_blank"><img alt="binarycreation" src="https://www.mastitimeradio.com/tambola-dam/img/binary_creations_logo_sm.png"/></a></li>
+        <li><a href="http://niceglobalsolutions.com" target="_blank"><img alt="" src="https://www.mastitimeradio.com/tambola/assets/images/t_n_c_assets/nice_logo.jpeg" /></a></li>
+        <li><a href="https://www.starkalakaar.com/register/" target="_blank" class="link"><img alt="Star_Kalakar" src="https://www.mastitimeradio.com/tambola/assets/images/t_n_c_assets/kalakar.png"/></a>  </li>
+        <li><a href="https://desiplaza.us/" target="_blank" class="link"><img alt="Desiplaza_US" src="https://www.mastitimeradio.com/tambola/assets/images/t_n_c_assets/desiplaza_us.png"/></a></li>
+        <li><a href="http://desiplaza.tv/" target="_blank" class="link"><img alt="Desi_Plaza_TV" src="https://www.mastitimeradio.com/tambola/assets/images/t_n_c_assets/dptv.jpg"/></a></li>
+      </ul>
+    </div>
+  </div> -->
+  <div class="row align-items-center g-list-loading-spinner h-container2" *ngIf="!gamesLoaded">
+    <div class="col-12">
+      <div class="text-center">
+        <app-processing></app-processing>
+      </div>
+    </div>
+  </div>
+  <div class="row align-items-center g-list-loading-spinner h-container2 not-loading-spinner" style="position: fixed;" *ngIf="games && viewSt == 1">
+    <div class="col-12 col-lg-10 col-xl-9 col-md-10 col-sm-11 w3-white mx-auto px-0  rounded">
+      <div class="row game-popup-card mx-0">
+        <div class="col-12 col-md-4 col-lg-5 game-card-img p-3">
+          <img class="img-thumbnail" src="https://www.mastitimeradio.com/tambola-dam/img/game_thumb.png" alt="">
+        </div>
+        <div class="col game-card-data p-3 pl-md-0 pl-lg-0">
+          <p class="py-0">
+            <button class="btn btn-danger px-4 py-2 mr-2" (click)="registerGame()" *ngIf="(user|async)?.uid && emailVerified" id="gameCtaBtn" disabled="disabled" >
+              <i class="material-icons mr-3">open_in_browser</i>{{selectedGame.registered ? 'View Ticket': 'Register'}}
+            </button>
+            <button class="btn btn-danger px-4 py-2 mr-2" (click)="reqLogin()" *ngIf="!(user|async)?.uid">
+              <i class="material-icons mr-3">lock_open</i>Login required
+            </button>
+            <button class="btn btn-danger px-4 py-2 mr-2" *ngIf="(user|async)?.uid && !emailVerified" disabled>
+              <i class="material-icons mr-3">lock_open</i>Verify to register
+            </button>
+            <button class="btn px-4 py-2" (click)="resSelectGame()"><i class="material-icons mr-3">close</i>Close</button>
+          </p>
+          <p class="my-0">
+            <span class="d-block">
+              <!-- Game stars at:<b> <span class="d-inline-block">{{selectedGame.gt | date:'medium'}}</span></b> -->
+              Game stars at:<b> <span class="d-inline-block">{{getConvertedDate(selectedGame.gt)}}</span></b>
+            </span>
+            <span class="d-block">
+              <!-- Register before: <b><span class="d-inline-block">{{selectedGame.et | date:'medium'}}</span></b> -->
+              Register before: <b><span class="d-inline-block">{{getConvertedDate(selectedGame.et)}}</span></b>
+            </span>
+            <small class="d-block text-muted">
+              *By clicking on register you are agreed to terms and conditions shown below.
+            </small>
+          </p>
+        </div>
+        <div class="col-12 pb-2">
+          <hr class="mt-0 mb-3">
+          <iframe [src]="trustedUrl" class="w-100 for-lg" style="height: 30vh;" frameborder="0" onload="iframeLoaded()">Loading...</iframe>
+          <iframe [src]="trustedUrl" class="w-100 for-sm" style="min-height: 0vh;" frameborder="0" onload="resizeIframe(this)">Loading...</iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row align-items-center g-list-loading-spinner h-container2" *ngIf="games && viewSt == 2">
+    <div class="w3-white mx-auto px-4 py-3 rounded w3-animate-zoom fast ticket-block">
+      <section class="row w3-animate-zoom">
+        <div class="col-12 ticket-card">
+          <div class="col-12 px-0 mx-auto ticket-data" *ngIf="ticket">
+            <div class="row mx-0 ticket-row justify-content-between">
+              <div class="col cell-col ticket-col" *ngFor="let ticket of ticket[0]">
+                <p class="text-center my-0">{{ticket != 0 ? ticket: ''}}</p>
+              </div>
+            </div>
+            <div class="row mx-auto ticket-row justify-content-between">
+              <div class="col cell-col ticket-col" *ngFor="let ticket of ticket[1]">
+                <p class="text-center my-0">{{ticket != 0 ? ticket: ''}}</p>
+              </div>
+            </div>
+            <div class="row mx-auto ticket-row justify-content-between">
+              <div class="col cell-col ticket-col" *ngFor="let ticket of ticket[2]">
+                <p class="text-center my-0">{{ticket != 0 ? ticket: ''}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-3">
+          <p class="text-center ticket-buttons">
+            <button class="btn btn-warning py-2 px-4 mx-2" (click)="getTicket()"><i class="material-icons mr-3">refresh</i>Refresh</button>
+            <button class="btn btn-success py-2 px-4 mx-2" (click)="getTn()"><i class="material-icons mr-3">check</i>Confirm the ticket</button>
+            <button class="btn btn-link text-muted py-2 px-4 mx-2" (click)="resSelectGame()"><i class="material-icons mr-3">close</i>Cancel</button>
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="row align-items-center g-list-loading-spinner h-container2" *ngIf="games && viewSt == 3">
+    <div class="w3-white mx-auto px-4 py-3 rounded w3-animate-zoom fast ticket-block">
+      <section class="row w3-animate-zoom">
+        <div class="col-12">
+          <p class="text-center my-0">
+            <app-processing *ngIf="pState == 0"></app-processing>
+            <app-success *ngIf="pState == 1"></app-success>
+            <app-failed *ngIf="pState == 2"></app-failed>
+          </p>
+          <h4 class="text-center mt-3">
+            <span class="text-warning" *ngIf="pState == 0">Processing...</span>
+            <span class="text-success"  *ngIf="pState == 1">Submitted Successfully</span>
+            <span class="d-block"  *ngIf="pState == 1"><small>Redirecting please wait...</small></span>
+            <span class="text-danger"  *ngIf="pState == 2">Ooops! some error happened, Please try again later...</span>
+          </h4>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

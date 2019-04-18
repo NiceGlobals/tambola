@@ -1,0 +1,16 @@
+<div class="warning-box">
+  <p class="text-center">
+    <img style="width: 250px; max-width: 50%;" src="https://www.mastitimeradio.com/tambola-dam/img/email-verification.svg" alt="">
+  </p>
+  <h2 class="fw-300 text-dark text-center mt-5" style="line-height: 1.75">Hello {{ cUser.fname || 'User'}},<br>Please verify your email to continue...</h2>
+  <p class="text-center">If you don't find a verification mail in your inbox,<br>Also please check in your <b>"<u>spam folder</u>"</b> or please check your email address once again.</p>
+  <p class="text-center"><a class="text-primary fw-600" [href]="'mailto:' + cUser.email || 'javascript:void(0)'">"{{cUser.email}}"</a></p>
+  <p class="text-center mt-4">Still not find verification mail...?</p>
+  <p class="text-center">
+    <button [disabled]="rsDisable" (click)="resendEMV()" class="btn mtb px-4 py-2">
+      <span *ngIf="!rsDisable">Click here to resend</span>
+      <span *ngIf="rsDisable">Resend in &nbsp; {{getMinutes(timeleft)}}</span>
+    </button>
+  </p>
+  <p class="text-center mt-5">Please <a target="_blank" href="https://www.mastitimeradio.com/index.php/contact-us" class="text-primary fw-500">Contact Us</a> if you are not able to get email.</p>
+</div>
